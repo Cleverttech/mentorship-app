@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
-npm run lint          # Lint entire project
-npm run test          # Run unit tests
-tsc --noEmit          # Type-check code
+echo "🔍 Running full pre-push checks..."
+
+npm run lint || exit 1
+npm run test || exit 1
+tsc --noEmit || exit 1
+
+echo "✅ All checks passed. Pushing code..."
