@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cleverttech-Mentorship
 
-## Getting Started
+# Mentorship Platform – Architecture Design
 
-First, run the development server:
+## 🧩 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Frontend & Backend: **Next.js** with **TypeScript**
+- UI: **React** components (possibly using Tailwind CSS)
+- API: REST (or gradually evolve to tRPC/GraphQL)
+- State Management: Zustand + TanStack Query + Context API (Hybrid setup)
+- Auth: NextAuth.js or custom JWT-based system
+- Database: PostgreSQL or MongoDB (via Prisma ORM)
+- Deployment: Vercel or Docker + Railway/Fly.io
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 App Goal
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+A web app where:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Mentors can create profiles and list skills
+- Mentees can browse mentors and book sessions
+- Messaging and scheduling are possible
 
-## Learn More
+## 🧠 Architecture Principles
 
-To learn more about Next.js, take a look at the following resources:
+- Domain-Driven Design (lightweight intro)
+- Folder-based modular structure
+- Client-server separation with SSR/ISR/CSR strategies
+- Clear separation of concerns (components vs. pages vs. services)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🗂 Folder Structure (Planned)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📁 /app (Next.js App Router)
+┣ 📁 api
+┣ 📁 auth
+┣ 📁 dashboard
+┣ 📁 mentees
+┣ 📁 mentors
+┣ 📁 components
+┣ 📁 lib
+┣ 📁 types
+┗ 📁 services
 
-## Deploy on Vercel
+## 🧪 Testing Plan
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Unit tests: Jest + React Testing Library
+- E2E tests: Playwright (optional phase)
