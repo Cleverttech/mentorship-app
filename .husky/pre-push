@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-echo "🔍 Running full pre-push checks..."
-
-npm run lint || exit 1
-npm run test || exit 1
-tsc --noEmit || exit 1
-
-echo "✅ All checks passed. Pushing code..."
