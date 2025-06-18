@@ -7,7 +7,7 @@ The **Mentorship App** follows a decoupled architecture, separating frontend and
 - **Frontend:** React 19, TypeScript, MUI, React Hook Form, Zod
 - **Backend:** PHP (Laravel or Symfony)
 - **API Communication:** REST (JSON)
-- **Database:** MySQL / PostgreSQL
+- **Database:** MySQL / PostgreSQL or Mongo ?
 
 ---
 
