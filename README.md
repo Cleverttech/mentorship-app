@@ -72,6 +72,31 @@ The backend exposes a secure REST API, implementing business logic, data handlin
 
 ---
 
+### 💳 Payment Integration
+
+The mentorship app will be **subscription-based**, using **Stripe** to manage payment flows securely and reliably.
+
+#### Stripe Integration Features
+
+- Subscription plans (monthly/yearly)
+- Secure checkout using Stripe Checkout or Stripe Elements
+- Webhook handling for subscription events (success, failure, cancellations)
+- Role updates or access control based on subscription status
+- Optional: Customer portal for billing management
+
+**Frontend**:
+
+- Stripe Checkout redirection or embedded Elements
+- Billing status in user profile page
+
+**Backend**:
+
+- Stripe SDK integration in PHP (Laravel/Symfony SDK or via Stripe API)
+- Webhooks to sync Stripe subscription status to user model
+- Store `stripe_customer_id`, `subscription_id`, and status in DB
+
+---
+
 ### 🚀 Deployment
 
 | Layer    | Platform Suggestions                                      |
