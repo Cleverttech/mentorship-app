@@ -9,6 +9,10 @@ The **Mentorship App** follows a decoupled architecture, separating frontend and
 - **API Communication:** REST (JSON)
 - **Database:** MySQL / PostgreSQL or Mongo ?
 
+### ⚙️ Tooling
+
+- Code quality is managed using **Biome** for linting and formatting
+
 ---
 
 ### 🖥️ Frontend Architecture (React 19)

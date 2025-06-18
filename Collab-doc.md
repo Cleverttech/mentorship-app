@@ -118,3 +118,29 @@ REACT_APP_API_URL=http://localhost:8000/api
 - Code linting, formatting, and pre-commit hooks managed via `rs`
 - Collaborative coding supported via GitHub branches, PRs, and reviews
 - Live coding sessions on TikTok by contributors
+
+# Contributing to the Mentorship App
+
+Thank you for considering contributing to the Mentorship App! 🚀
+
+## 🧱 Project Structure
+
+- `/frontend`: React 19, TypeScript, MUI
+- `/backend`: PHP (Laravel or Symfony)
+- API Communication: RESTful (JSON)
+- Subscription-based via Stripe
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Fork the repository
+
+Click "Fork" to make your own copy.
+
+### 2. Clone your fork
+
+```bash
+git clone https://github.com/your-username/mentorship-app.git
+
+```
