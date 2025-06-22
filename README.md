@@ -1,4 +1,3 @@
-
 ```markdown
 🎓 Mentorship App – Frontend
 
@@ -14,28 +13,26 @@ This is the **frontend** codebase for the Mentorship Web App, a platform that co
 - Axios (for API calls)
 - Vite / React Scripts (depending on setup)
 
-
 📁 Folder Structure (WIP)
-
 ```
 
 src/
 
-├── components/       # Reusable UI components
+├── components/ # Reusable UI components
 
-├── pages/            # Route-based pages (e.g., Login, Dashboard)
+├── pages/ # Route-based pages (e.g., Login, Dashboard)
 
-├── features/         # Feature-based slices (e.g., Auth, Booking)
+├── features/ # Feature-based slices (e.g., Auth, Booking)
 
-├── hooks/            # Custom React hooks
+├── hooks/ # Custom React hooks
 
-├── utils/            # Utility functions
+├── utils/ # Utility functions
 
-├── services/         # API services
+├── services/ # API services
 
-├── types/            # TypeScript type declarations
+├── types/ # TypeScript type declarations
 
-├── assets/           # Static assets (e.g., logo, icons)
+├── assets/ # Static assets (e.g., logo, icons)
 
 └── App.tsx
 
@@ -76,15 +73,18 @@ src/
 
 The app is prepared for deployment via:
 
-* Vercel
-* Netlify
-* AWS S3/CloudFront (optional)
+- Vercel
+- Netlify
+- AWS S3/CloudFront (optional)
 
 ## 📄 License
 
 MIT – feel free to use and adapt with attribution.
 
-
 ## 🌍 Backend
 
-👉 [Mentorship App Backend Repo](https://github.com/charitydarko/mentorship-backend) (PHP/Laravel or similar)
+👉 [Mentorship App Backend Repo](https://github.com/Cleverttech/mentorship-app-be) (PHP/Laravel or similar)
+
+## Wireframe
+
+[Figma Link](https://www.figma.com/design/ImiChez7djSmglCEjs5RGj/Figma-basics?node-id=1669-162202&t=zB42eZlQSmMtjgTy-1)
