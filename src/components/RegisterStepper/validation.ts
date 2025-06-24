@@ -9,6 +9,7 @@ export const registerSchema = z.object({
   skills: z.array(z.string()).optional(),
   profileImage: z.any().optional(),
   credits: z.number().min(1, "Please select at least 1 credit").optional(),
+  learningInterest: z.string().optional(),
 });
 
 export type RegisterFormType = z.infer<typeof registerSchema>;

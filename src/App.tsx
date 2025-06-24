@@ -4,13 +4,15 @@ import LoginPage from "./pages/login/LoginPage";
 import ForgotPasswordPage from "./pages/forgot-password/ForgotPasswordPage";
 import Register from "./pages/register/Register";
 import ProfilePage from "./pages/profile/ProfilePage";
+import LandingPage from "./pages/landing-page/LandingPage";
 
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />

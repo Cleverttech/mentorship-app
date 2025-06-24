@@ -10,6 +10,8 @@ const StepProfileSetup = () => {
     watch,
   } = useFormContext();
 
+
+  const role = watch("role");
   const skills = watch("skills") || [];
 
   const handleAddSkill = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -56,6 +58,13 @@ const StepProfileSetup = () => {
       </Stack>
 
       <input type="file" accept="image/*" {...register("profileImage")} />
+      {role === "mentee" && (
+        <TextField
+          label="Learning Interest"
+          {...register("learningInterest")}
+          fullWidth
+        />
+      )}
     </Box>
   );
 };

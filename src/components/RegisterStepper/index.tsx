@@ -5,7 +5,6 @@ import {
   StepLabel,
   Box,
   Button,
-  Typography,
   Snackbar,
   Alert,
 } from "@mui/material";
@@ -49,7 +48,6 @@ const RegisterStepper = () => {
   const onSubmit = methods.handleSubmit((data) => {
     console.log("Submitted data:", data);
 
-    // Save to localStorage
     localStorage.setItem("profileData", JSON.stringify(data));
 
     // Show success message
