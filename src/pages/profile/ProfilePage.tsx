@@ -50,6 +50,13 @@ const ProfilePage = () => {
           <strong>Credits:</strong> {profile.credits}
         </Typography>
       )}
+
+      {profile.role === "mentee" && profile.learningInterest && (
+        <Typography variant="body1" mt={2}>
+          <strong>Learning Interest:</strong> {profile.learningInterest}
+        </Typography>
+      )}
+
     </Box>
   );
 };
