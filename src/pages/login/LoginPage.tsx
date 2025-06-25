@@ -8,36 +8,29 @@ import {
 } from "@mui/material";
 import LoginForm from "../../components/LoginForm";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { mockAuthService } from "../../services/mockAuthService";
 import { LoginFormData } from "../../types/auth";
 
-export default function LoginPage() {
+function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = (data: LoginFormData) => {
-    const role = data.email.includes("mentor") ? "mentor" : "mentee";
-    login(role);
-    navigate(`/${role}/dashboard`);
+    try {
+      const user = mockAuthService.login(data.email, data.password);
+      login(user.role);
+      navigate(`/${user.role}/dashboard`);
+    } catch (err: any) {
+      alert(err.message);
+    }
   };
 
   return (
-    <Box
-      minHeight="100vh"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      bgcolor="grey.100"
-      p={2}
-    >
-      <Container maxWidth="sm">
-        <Paper elevation={3} sx={{ borderRadius: 4, p: { xs: 3, sm: 5 } }}>
-          <Typography variant="h4" fontWeight={600} mb={3}>
-            Login to Your Account
-          </Typography>
-
-          <LoginForm onSubmitOverride={handleLogin} />
-        </Paper>
-      </Container>
-    </Box>
+    <AuthLayout title="Mentorship Plattform – Login">
+      <LoginForm onSubmitOverride={handleLogin} />
+    </AuthLayout>
   );
 }
+
+export default LoginPage;

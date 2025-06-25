@@ -26,7 +26,7 @@ export default function LoginForm({ onSubmitOverride }: LoginFormProps) {
 
   const onSubmit = async (data: LoginFormData) => {
     console.log("Login attempt", data);
-    // Default internal handler (used only if no override is passed)
+    // Default fallback logic; will not run if override is provided
   };
 
   return (
