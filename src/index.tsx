@@ -4,6 +4,9 @@ import App from "./App";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import theme from "./theme";
 import { AuthProvider } from './context/AuthContext';
+import { preloadTestUsers } from './services/mockAuthService';
+
+preloadTestUsers();
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
