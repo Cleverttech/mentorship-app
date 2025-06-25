@@ -17,7 +17,7 @@ export default function LandingPage() {
           <Stack spacing={4} alignItems="center">
             <Box textAlign="center">
               <Typography variant="h3" fontWeight={700} gutterBottom>
-                Get direct guidance through Mentorship
+                Cleverttech Mentorship
               </Typography>
               <Typography variant="subtitle1" color="text.secondary">
                 Learn directly from top industry experts. Book sessions. Get real guidance.
