@@ -10,8 +10,11 @@ import UpcomingSessionCard from "../../components/UpcomingSessionCard";
 import ArticleCard from "../../components/ArticleCard";
 import MentorCard from "../../components/MentorCard";
 import { mockMenteeDashboard } from "../../mocks/mockMenteeDashboardData";
+import { useNavigate } from "react-router-dom";
 
 export default function MenteeDashboard() {
+    const navigate = useNavigate();
+  
   const {
     menteeName,
     creditsAvailable,
@@ -26,7 +29,9 @@ export default function MenteeDashboard() {
       <Typography variant="h4" align="center" fontWeight={700} gutterBottom>
         Welcome to Your Dashboard, {menteeName}! 👋
       </Typography>
-
+      <Button variant="contained" onClick={() => navigate("/buy-credits")}>
+        Buy Credits
+      </Button>
       {/* Credit Summary */}
       <Box
         display="flex"

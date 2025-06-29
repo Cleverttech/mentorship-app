@@ -13,6 +13,7 @@ export const mockMentorDashboard = {
         date: "2025-06-28",
         time: "10:00 AM",
         creditsBooked: 15,
+        skills: ["Resume Review", "Interview Prep"]
       },
       {
         id: "session2",
@@ -21,6 +22,7 @@ export const mockMentorDashboard = {
         date: "2025-06-30",
         time: "2:30 PM",
         creditsBooked: 13,
+        skills: ["Resume Review", "Interview Prep"]
       },
     ],
     activeMentees: [

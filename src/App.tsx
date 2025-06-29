@@ -8,6 +8,8 @@ import MentorDashboard from "./pages/mentor-dashbaord/MentorDashboard";
 import MenteeDashboard from "./pages/mentee-dashboard/MenteeDashboard";
 import BookingPage from "./pages/bookings/BookingPage";
 import ArticlePage from "./pages/articles/ArticlePage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import BuyCreditsPage from "./pages/buy-credits/BuyCreditsPage";
 
 
 function App() {
@@ -19,8 +21,33 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/mentor/dashboard" element={<MentorDashboard />} />
-        <Route path="/mentee/dashboard" element={<MenteeDashboard />} />
+          {/* Protected mentor route */}
+        <Route
+          path="/mentor/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["mentor"]}>
+              <MentorDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Protected mentee route */}
+        <Route
+          path="/mentee/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["mentee"]}>
+              <MenteeDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/buy-credits"
+          element={
+            <ProtectedRoute allowedRoles={["mentee"]}>
+              <BuyCreditsPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/bookings/:id" element={<BookingPage />} />
         <Route path="/articles/:id" element={<ArticlePage />} />
       </Routes>
