@@ -1,6 +1,7 @@
 export const mockMenteeDashboard = {
     menteeName: "Clever Mentee",
     creditsAvailable: 45,
+    creditsUsedThisMonth: 5,
   
     upcomingSessions: [
       {
@@ -53,13 +54,14 @@ export const mockMenteeDashboard = {
         title: "How to Think Like a Senior Developer",
         author: "John Mentor",
         date: "2025-06-22",
+        description: "Ipsum lorem..."
       },
       {
         id: "a2",
         title: "Building Your First Portfolio Project",
         author: "Alex Rivera",
         date: "2025-06-18",
-      },
+        description: "Ipsum lorem..."      },
     ],
   };
   
