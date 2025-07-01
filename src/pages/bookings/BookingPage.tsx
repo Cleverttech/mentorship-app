@@ -1,4 +1,3 @@
 export default function BookingPage() {
-    return <div>Booking Page – Coming Soon!</div>;
-  }
-  
+  return <div>Booking Page – Coming Soon!</div>;
+}

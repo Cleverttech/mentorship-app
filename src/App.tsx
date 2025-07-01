@@ -1,17 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/login/LoginPage";
-import ForgotPasswordPage from "./pages/forgot-password/ForgotPasswordPage";
-import Register from "./pages/register/Register";
-import ProfilePage from "./pages/profile/ProfilePage";
-import LandingPage from "./pages/landing-page/LandingPage";
-import MentorDashboard from "./pages/mentor-dashbaord/MentorDashboard";
-import MenteeDashboard from "./pages/mentee-dashboard/MenteeDashboard";
-import BookingPage from "./pages/bookings/BookingPage";
-import ArticlePage from "./pages/articles/ArticlePage";
-import ProtectedRoute from "./components/ProtectedRoute";
-import BuyCreditsPage from "./pages/buy-credits/BuyCreditsPage";
-import MentorsPage from "./pages/mentors/MentorsPage";
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/login/LoginPage';
+import ForgotPasswordPage from './pages/forgot-password/ForgotPasswordPage';
+import Register from './pages/register/Register';
+import ProfilePage from './pages/profile/ProfilePage';
+import LandingPage from './pages/landing-page/LandingPage';
+import MentorDashboard from './pages/mentor-dashbaord/MentorDashboard';
+import MenteeDashboard from './pages/mentee-dashboard/MenteeDashboard';
+import BookingPage from './pages/bookings/BookingPage';
+import ArticlePage from './pages/articles/ArticlePage';
+import ProtectedRoute from './components/ProtectedRoute';
+import BuyCreditsPage from './pages/buy-credits/BuyCreditsPage';
+import MentorsPage from './pages/mentors/MentorsPage';
 
 function App() {
   return (
@@ -22,11 +21,11 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/profile" element={<ProfilePage />} />
-          {/* Protected mentor route */}
+        {/* Protected mentor route */}
         <Route
           path="/mentor/dashboard"
           element={
-            <ProtectedRoute allowedRoles={["mentor"]}>
+            <ProtectedRoute allowedRoles={['mentor']}>
               <MentorDashboard />
             </ProtectedRoute>
           }
@@ -36,7 +35,7 @@ function App() {
         <Route
           path="/mentee/dashboard"
           element={
-            <ProtectedRoute allowedRoles={["mentee"]}>
+            <ProtectedRoute allowedRoles={['mentee']}>
               <MenteeDashboard />
             </ProtectedRoute>
           }
@@ -44,7 +43,7 @@ function App() {
         <Route
           path="/buy-credits"
           element={
-            <ProtectedRoute allowedRoles={["mentee"]}>
+            <ProtectedRoute allowedRoles={['mentee']}>
               <BuyCreditsPage />
             </ProtectedRoute>
           }
@@ -52,7 +51,7 @@ function App() {
         <Route
           path="/mentors"
           element={
-            <ProtectedRoute allowedRoles={["mentee"]}>
+            <ProtectedRoute allowedRoles={['mentee']}>
               <MentorsPage />
             </ProtectedRoute>
           }

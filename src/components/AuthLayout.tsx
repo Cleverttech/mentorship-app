@@ -1,5 +1,5 @@
-import { Box, Container, Paper, Typography } from "@mui/material";
-import { ReactNode } from "react";
+import { Box, Container, Paper, Typography } from '@mui/material';
+import type { ReactNode } from 'react';
 
 interface AuthLayoutProps {
   title: string;

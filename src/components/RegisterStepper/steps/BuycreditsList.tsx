@@ -1,16 +1,16 @@
-import React from "react";
-import { Box, Typography, Paper } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import React from 'react';
+import { Box, Typography, Paper } from '@mui/material';
+import { useFormContext } from 'react-hook-form';
 
 const creditOptions = [10, 20, 50];
 const EURO_TO_USD = 0.5;
 
 const BuyCreditsList = () => {
   const { setValue, watch } = useFormContext();
-  const selectedCredits = watch("credits");
+  const selectedCredits = watch('credits');
 
   const handleSelect = (amount: number) => {
-    setValue("credits", amount, { shouldValidate: true });
+    setValue('credits', amount, { shouldValidate: true });
   };
 
   return (
@@ -33,25 +33,23 @@ const BuyCreditsList = () => {
           return (
             <Box
               key={amount}
-              width={{ xs: "45%", sm: "22%" }}
+              width={{ xs: '45%', sm: '22%' }}
               onClick={() => handleSelect(amount)}
               sx={{
-                cursor: "pointer",
+                cursor: 'pointer',
               }}
             >
               <Paper
                 elevation={isSelected ? 6 : 1}
                 sx={{
                   p: 2,
-                  textAlign: "center",
+                  textAlign: 'center',
                   borderRadius: 2,
-                  backgroundColor: isSelected ? "primary.main" : "grey.100",
-                  color: isSelected ? "white" : "text.primary",
-                  transition: "0.3s",
-                  "&:hover": {
-                    backgroundColor: isSelected
-                      ? "primary.dark"
-                      : "grey.300",
+                  backgroundColor: isSelected ? 'primary.main' : 'grey.100',
+                  color: isSelected ? 'white' : 'text.primary',
+                  transition: '0.3s',
+                  '&:hover': {
+                    backgroundColor: isSelected ? 'primary.dark' : 'grey.300',
                   },
                 }}
               >
@@ -59,7 +57,7 @@ const BuyCreditsList = () => {
                   {amount} Credits
                 </Typography>
                 <Typography variant="body2">
-                  ${ (amount * EURO_TO_USD).toFixed(2) } USD
+                  ${(amount * EURO_TO_USD).toFixed(2)} USD
                 </Typography>
               </Paper>
             </Box>
@@ -70,7 +68,7 @@ const BuyCreditsList = () => {
       {selectedCredits && (
         <Box mt={3}>
           <Typography variant="body1">
-            Selected: <strong>{selectedCredits} credits</strong> ={" "}
+            Selected: <strong>{selectedCredits} credits</strong> ={' '}
             <strong>${(selectedCredits * EURO_TO_USD).toFixed(2)} USD</strong>
           </Typography>
         </Box>

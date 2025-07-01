@@ -29,7 +29,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "biome format . --write",
-    "lint": "biome lint ."
+    "lint": "biome check .",
+    "lint:fix": "biome check . --apply"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +53,9 @@
   "devDependencies": {
     "@biomejs/biome": "^2.0.0",
     "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6"
+    "@types/react-dom": "^19.1.6",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.1",
+    "prettier": "^3.6.2"
   }
 }

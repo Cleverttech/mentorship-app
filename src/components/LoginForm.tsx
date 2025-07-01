@@ -1,15 +1,9 @@
-import {
-  Box,
-  Button,
-  TextField,
-  Link as MuiLink,
-  Stack,
-} from "@mui/material";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "../utils/validation";
-import { LoginFormData } from "../types/auth";
-import { Link } from "react-router-dom";
+import { Box, Button, TextField, Link as MuiLink, Stack } from '@mui/material';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema } from '../utils/validation';
+import type { LoginFormData } from '../types/auth';
+import { Link } from 'react-router-dom';
 
 type LoginFormProps = {
   onSubmitOverride?: (data: LoginFormData) => void;
@@ -23,22 +17,26 @@ export default function LoginForm({ onSubmitOverride }: LoginFormProps) {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
-  
+
   const onSubmit = async (data: LoginFormData) => {
-    console.log("Login attempt", data);
+    console.log('Login attempt', data);
     // Default fallback logic; will not run if override is provided
   };
 
   return (
     <form
-      onSubmit={onSubmitOverride ? handleSubmit(onSubmitOverride) : handleSubmit(onSubmit)}
+      onSubmit={
+        onSubmitOverride
+          ? handleSubmit(onSubmitOverride)
+          : handleSubmit(onSubmit)
+      }
       noValidate
     >
       <Box mb={2}>
         <TextField
           label="Email"
           fullWidth
-          {...register("email")}
+          {...register('email')}
           error={!!errors.email}
           helperText={errors.email?.message}
         />
@@ -48,7 +46,7 @@ export default function LoginForm({ onSubmitOverride }: LoginFormProps) {
           label="Password"
           type="password"
           fullWidth
-          {...register("password")}
+          {...register('password')}
           error={!!errors.password}
           helperText={errors.password?.message}
         />

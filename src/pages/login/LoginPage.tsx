@@ -1,10 +1,10 @@
-import React from "react";
-import AuthLayout from "../../components/AuthLayout";
-import LoginForm from "../../components/LoginForm";
-import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { mockAuthService } from "../../services/mockAuthService";
-import { LoginFormData } from "../../types/auth";
+import React from 'react';
+import AuthLayout from '../../components/AuthLayout';
+import LoginForm from '../../components/LoginForm';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { mockAuthService } from '../../services/mockAuthService';
+import type { LoginFormData } from '../../types/auth';
 
 function LoginPage() {
   const { login } = useAuth();

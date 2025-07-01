@@ -5,13 +5,13 @@ import {
   Card,
   CardContent,
   Button,
-} from "@mui/material";
+} from '@mui/material';
 
 // Mock credit packages
 const creditPackages = [
-  { id: 1, credits: 10, price: "$10" },
-  { id: 2, credits: 25, price: "$22" },
-  { id: 3, credits: 50, price: "$40" },
+  { id: 1, credits: 10, price: '$10' },
+  { id: 2, credits: 25, price: '$22' },
+  { id: 3, credits: 50, price: '$40' },
 ];
 
 export default function BuyCreditsPage() {
@@ -30,24 +30,24 @@ export default function BuyCreditsPage() {
 
       <Box textAlign="center" mb={4}>
         <Typography variant="h6">Your Current Credits</Typography>
-        <Typography variant="h3" color="primary">{currentCredits}</Typography>
+        <Typography variant="h3" color="primary">
+          {currentCredits}
+        </Typography>
       </Box>
 
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="center"
-        gap={2}
-      >
+      <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
         {creditPackages.map((pkg) => (
           <Box
             key={pkg.id}
             sx={{
-              width: { xs: "100%", sm: "30%" },
+              width: { xs: '100%', sm: '30%' },
             }}
           >
-            <Card elevation={0} sx={{ border: "1px solid #e0e0e0", borderRadius: 2 }}>
-              <CardContent sx={{ textAlign: "center" }}>
+            <Card
+              elevation={0}
+              sx={{ border: '1px solid #e0e0e0', borderRadius: 2 }}
+            >
+              <CardContent sx={{ textAlign: 'center' }}>
                 <Typography variant="h6">{pkg.credits} Credits</Typography>
                 <Typography variant="body1">{pkg.price}</Typography>
                 <Button

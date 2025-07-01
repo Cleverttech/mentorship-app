@@ -1,13 +1,16 @@
-import { ReactNode } from "react";
-import { useAuth } from "../context/AuthContext";
-import { Navigate } from "react-router-dom";
+import type { ReactNode } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 interface ProtectedRouteProps {
   children: ReactNode;
   allowedRoles?: string[];
 }
 
-export default function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) {
+export default function ProtectedRoute({
+  children,
+  allowedRoles,
+}: ProtectedRouteProps) {
   const { isAuthenticated, role } = useAuth();
 
   if (!isAuthenticated) {
@@ -17,7 +20,8 @@ export default function ProtectedRoute({ children, allowedRoles }: ProtectedRout
 
   if (allowedRoles && role && !allowedRoles.includes(role)) {
     // 🔴 Logged in but not allowed role – redirect to their dashboard
-    const redirectPath = role === "mentor" ? "/mentor/dashboard" : "/mentee/dashboard";
+    const redirectPath =
+      role === 'mentor' ? '/mentor/dashboard' : '/mentee/dashboard';
     return <Navigate to={redirectPath} replace />;
   }
 

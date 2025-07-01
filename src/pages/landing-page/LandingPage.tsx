@@ -1,4 +1,11 @@
-import { Box, Button, Container, Typography, Paper, Stack } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  Typography,
+  Paper,
+  Stack,
+} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 export default function LandingPage() {
@@ -20,7 +27,8 @@ export default function LandingPage() {
                 Cleverttech Mentorship
               </Typography>
               <Typography variant="subtitle1" color="text.secondary">
-                Learn directly from top industry experts. Book sessions. Get real guidance.
+                Learn directly from top industry experts. Book sessions. Get
+                real guidance.
               </Typography>
             </Box>
 

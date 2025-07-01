@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Box, Typography, Avatar, Chip, Divider } from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, Avatar, Chip, Divider } from '@mui/material';
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState<any>(null);
 
   useEffect(() => {
-    const data = localStorage.getItem("profileData");
+    const data = localStorage.getItem('profileData');
     if (data) {
       setProfile(JSON.parse(data));
     }
@@ -31,7 +31,7 @@ const ProfilePage = () => {
       </Typography>
 
       <Typography variant="body1" mt={2}>
-        <strong>Bio:</strong> {profile.bio || "—"}
+        <strong>Bio:</strong> {profile.bio || '—'}
       </Typography>
 
       <Divider sx={{ my: 2 }} />
@@ -51,12 +51,11 @@ const ProfilePage = () => {
         </Typography>
       )}
 
-      {profile.role === "mentee" && profile.learningInterest && (
+      {profile.role === 'mentee' && profile.learningInterest && (
         <Typography variant="body1" mt={2}>
           <strong>Learning Interest:</strong> {profile.learningInterest}
         </Typography>
       )}
-
     </Box>
   );
 };

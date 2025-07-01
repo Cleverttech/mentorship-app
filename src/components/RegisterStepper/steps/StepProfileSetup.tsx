@@ -1,6 +1,6 @@
-import React from "react";
-import { TextField, Box, Chip, Stack } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import type React from 'react';
+import { TextField, Box, Chip, Stack } from '@mui/material';
+import { useFormContext } from 'react-hook-form';
 
 const StepProfileSetup = () => {
   const {
@@ -10,24 +10,23 @@ const StepProfileSetup = () => {
     watch,
   } = useFormContext();
 
-
-  const role = watch("role");
-  const skills = watch("skills") || [];
+  const role = watch('role');
+  const skills = watch('skills') || [];
 
   const handleAddSkill = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.preventDefault();
       const value = e.currentTarget.value.trim();
       if (value && !skills.includes(value)) {
-        setValue("skills", [...skills, value]);
-        e.currentTarget.value = "";
+        setValue('skills', [...skills, value]);
+        e.currentTarget.value = '';
       }
     }
   };
 
   const handleDeleteSkill = (skillToDelete: string) => {
     setValue(
-      "skills",
+      'skills',
       skills.filter((s: string) => s !== skillToDelete)
     );
   };
@@ -38,7 +37,7 @@ const StepProfileSetup = () => {
         label="Bio"
         multiline
         rows={4}
-        {...register("bio")}
+        {...register('bio')}
         fullWidth
       />
 
@@ -57,11 +56,11 @@ const StepProfileSetup = () => {
         ))}
       </Stack>
 
-      <input type="file" accept="image/*" {...register("profileImage")} />
-      {role === "mentee" && (
+      <input type="file" accept="image/*" {...register('profileImage')} />
+      {role === 'mentee' && (
         <TextField
           label="Learning Interest"
-          {...register("learningInterest")}
+          {...register('learningInterest')}
           fullWidth
         />
       )}
