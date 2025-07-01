@@ -10,6 +10,7 @@ import BookingPage from "./pages/bookings/BookingPage";
 import ArticlePage from "./pages/articles/ArticlePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import BuyCreditsPage from "./pages/buy-credits/BuyCreditsPage";
+import MentorsPage from "./pages/mentors/MentorsPage";
 
 
 function App() {
@@ -45,6 +46,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["mentee"]}>
               <BuyCreditsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mentors"
+          element={
+            <ProtectedRoute allowedRoles={["mentee"]}>
+              <MentorsPage />
             </ProtectedRoute>
           }
         />
