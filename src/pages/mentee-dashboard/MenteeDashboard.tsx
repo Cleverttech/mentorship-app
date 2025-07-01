@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { mockMenteeDashboard } from "../../mocks/mockMenteeDashboardData";
+import SideNav from "../../components/SideNav";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -38,6 +39,10 @@ export default function MenteeDashboard() {
   } = mockMenteeDashboard;
 
   return (
+    <Box sx={{ display: "flex" }}>
+    <SideNav />
+
+    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
     <Container maxWidth="lg" sx={{ py: 4 }}>
       {/* Header */}
       <Box textAlign="center" mb={4}>
@@ -174,5 +179,7 @@ export default function MenteeDashboard() {
         </Stack>
       </Box>
     </Container>
+    </Box>
+  </Box>
   );
 }
