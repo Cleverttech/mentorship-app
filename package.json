@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "biome format . --write",
+    "format:watch": "biome check . --watch --apply",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply"
   },

@@ -11,6 +11,7 @@ import ArticlePage from './pages/articles/ArticlePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import BuyCreditsPage from './pages/buy-credits/BuyCreditsPage';
 import MentorsPage from './pages/mentors/MentorsPage';
+import MessagesPage from './pages/messages/MessagesPage';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+
         {/* Protected mentor route */}
         <Route
           path="/mentor/dashboard"
@@ -56,8 +57,18 @@ function App() {
             </ProtectedRoute>
           }
         />
+        {/* Protected mentee & mentor routes */}
+        <Route
+          path="/messages"
+          element={
+            <ProtectedRoute allowedRoles={["mentee", "mentor"]}>
+             <MessagesPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/bookings/:id" element={<BookingPage />} />
         <Route path="/articles/:id" element={<ArticlePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   );
