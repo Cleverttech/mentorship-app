@@ -6,6 +6,7 @@ import {
   CardContent,
   Button,
 } from '@mui/material';
+import DashboardLayout from '../../components/DashboardLayout';
 
 // Mock credit packages
 const creditPackages = [
@@ -23,6 +24,7 @@ export default function BuyCreditsPage() {
   };
 
   return (
+   <DashboardLayout>
     <Container maxWidth="sm" sx={{ py: 4 }}>
       <Typography variant="h4" align="center" fontWeight={700} gutterBottom>
         Buy Credits
@@ -38,15 +40,15 @@ export default function BuyCreditsPage() {
       <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
         {creditPackages.map((pkg) => (
           <Box
-            key={pkg.id}
-            sx={{
-              width: { xs: '100%', sm: '30%' },
-            }}
+          key={pkg.id}
+          sx={{
+            width: { xs: '100%', sm: '30%' },
+          }}
           >
             <Card
               elevation={0}
               sx={{ border: '1px solid #e0e0e0', borderRadius: 2 }}
-            >
+              >
               <CardContent sx={{ textAlign: 'center' }}>
                 <Typography variant="h6">{pkg.credits} Credits</Typography>
                 <Typography variant="body1">{pkg.price}</Typography>
@@ -55,7 +57,7 @@ export default function BuyCreditsPage() {
                   fullWidth
                   sx={{ mt: 2 }}
                   onClick={() => handlePurchase(pkg)}
-                >
+                  >
                   Buy
                 </Button>
               </CardContent>
@@ -64,5 +66,6 @@ export default function BuyCreditsPage() {
         ))}
       </Box>
     </Container>
+ </DashboardLayout>
   );
 }
