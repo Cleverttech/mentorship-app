@@ -13,6 +13,7 @@ import {
 import { useParams, useNavigate } from "react-router-dom";
 import DashboardLayout from "../../components/DashboardLayout";
 import { mockArticles } from "../../mocks/mockArticleData";
+import { useEffect } from "react";
 
 export default function ArticlesPage() {
 	const { id } = useParams();
@@ -23,6 +24,12 @@ export default function ArticlesPage() {
 		(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
 	);
 
+	useEffect(() => {
+		if (!id && sortedArticles.length > 0) {
+			navigate(`/articles/${sortedArticles[0].id}`, { replace: true });
+		}
+	}, [id, navigate, sortedArticles]);
+
 	const selectedArticle = id
 		? sortedArticles.find((a) => a.id === id)
 		: sortedArticles[0];
@@ -31,10 +38,14 @@ export default function ArticlesPage() {
 		(a) => a.id !== selectedArticle?.id,
 	);
 
-	// If no articleId in URL, navigate to latest article route
-	if (!id && selectedArticle) {
-		navigate(`/articles/${selectedArticle.id}`, { replace: true });
-		return null;
+	if (!selectedArticle) {
+		return (
+			<DashboardLayout>
+				<Container maxWidth="lg" sx={{ py: 4 }}>
+					<Typography>No article found.</Typography>
+				</Container>
+			</DashboardLayout>
+		);
 	}
 
 	return (

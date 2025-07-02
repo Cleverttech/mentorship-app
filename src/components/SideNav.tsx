@@ -8,7 +8,7 @@ import {
 	Divider,
 	ListItemButton,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
 import MessageIcon from "@mui/icons-material/Message";
@@ -16,17 +16,27 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SchoolIcon from "@mui/icons-material/School";
-import { useAuth } from "../context/AuthContext";
 import ArticleIcon from "@mui/icons-material/Article";
+import { useAuth } from "../context/AuthContext";
 
 export default function SideNav() {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const { logout, role } = useAuth();
 
 	const handleLogout = () => {
 		logout();
 		navigate("/login");
 	};
+
+	const menuItems = [
+		{ label: "Dashboard", icon: <DashboardIcon />, path: `/${role}/dashboard` },
+		{ label: "Mentors", icon: <PeopleIcon />, path: "/mentors" },
+		{ label: "Messages", icon: <MessageIcon />, path: "/messages" },
+		{ label: "Profile", icon: <AccountCircleIcon />, path: "/profile" },
+		{ label: "Buy Credits", icon: <CreditCardIcon />, path: "/buy-credits" },
+		{ label: "Articles", icon: <ArticleIcon />, path: "/articles" },
+	];
 
 	return (
 		<Drawer
@@ -60,71 +70,32 @@ export default function SideNav() {
 
 				{/* Middle navigation icons */}
 				<List>
-					<Tooltip title="Dashboard" placement="right">
-						<ListItemButton
-							onClick={() => navigate(`/${role}/dashboard`)}
-							sx={{ justifyContent: "center" }}
-						>
-							<ListItemIcon sx={{ color: "#fff", minWidth: "auto" }}>
-								<DashboardIcon />
-							</ListItemIcon>
-						</ListItemButton>
-					</Tooltip>
-
-					<Tooltip title="Mentors" placement="right">
-						<ListItemButton
-							onClick={() => navigate("/mentors")}
-							sx={{ justifyContent: "center" }}
-						>
-							<ListItemIcon sx={{ color: "#fff", minWidth: "auto" }}>
-								<PeopleIcon />
-							</ListItemIcon>
-						</ListItemButton>
-					</Tooltip>
-
-					<Tooltip title="Messages" placement="right">
-						<ListItemButton
-							onClick={() => navigate("/messages")}
-							sx={{ justifyContent: "center" }}
-						>
-							<ListItemIcon sx={{ color: "#fff", minWidth: "auto" }}>
-								<MessageIcon />
-							</ListItemIcon>
-						</ListItemButton>
-					</Tooltip>
-
-					<Tooltip title="Profile" placement="right">
-						<ListItemButton
-							onClick={() => navigate("/profile")}
-							sx={{ justifyContent: "center" }}
-						>
-							<ListItemIcon sx={{ color: "#fff", minWidth: "auto" }}>
-								<AccountCircleIcon />
-							</ListItemIcon>
-						</ListItemButton>
-					</Tooltip>
-
-					<Tooltip title="Buy Credits" placement="right">
-						<ListItemButton
-							onClick={() => navigate("/buy-credits")}
-							sx={{ justifyContent: "center" }}
-						>
-							<ListItemIcon sx={{ color: "#fff", minWidth: "auto" }}>
-								<CreditCardIcon />
-							</ListItemIcon>
-						</ListItemButton>
-					</Tooltip>
-
-					<Tooltip title="Articles" placement="right">
-						<ListItemButton
-							onClick={() => navigate("/articles")}
-							sx={{ justifyContent: "center" }}
-						>
-							<ListItemIcon sx={{ color: "#fff", minWidth: "auto" }}>
-								<ArticleIcon />
-							</ListItemIcon>
-						</ListItemButton>
-					</Tooltip>
+					{menuItems.map((item) => {
+						const isActive = location.pathname.startsWith(item.path);
+						return (
+							<Tooltip title={item.label} placement="right" key={item.label}>
+								<ListItemButton
+									onClick={() => navigate(item.path)}
+									sx={{
+										justifyContent: "center",
+										bgcolor: isActive ? "primary.main" : "transparent",
+										"&:hover": {
+											bgcolor: "primary.light",
+										},
+									}}
+								>
+									<ListItemIcon
+										sx={{
+											color: isActive ? "white" : "#fff",
+											minWidth: "auto",
+										}}
+									>
+										{item.icon}
+									</ListItemIcon>
+								</ListItemButton>
+							</Tooltip>
+						);
+					})}
 				</List>
 
 				<Divider sx={{ bgcolor: "grey.700", my: 1 }} />

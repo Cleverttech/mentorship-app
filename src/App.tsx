@@ -34,6 +34,7 @@ function App() {
 				/>
 
 				{/* Protected mentee route */}
+				<Route path="/bookings/:id" element={<BookingPage />} />
 				<Route
 					path="/mentee/dashboard"
 					element={
@@ -67,7 +68,6 @@ function App() {
 						</ProtectedRoute>
 					}
 				/>
-				<Route path="/bookings/:id" element={<BookingPage />} />
 				<Route
 					path="/articles"
 					element={

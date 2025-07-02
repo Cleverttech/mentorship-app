@@ -31,7 +31,7 @@ export const mockMenteeDashboard = {
 			title: "Career Coach", // ✅ required
 			expertise: ["Career Advice", "Interview Prep"],
 			rating: 4.8,
-			avatar: "/avatars/john.png",
+			avatar: "https://randomuser.me/api/portraits/men/44.jpg",
 			credits: 5, // ✅ required
 			skills: ["Resume Review", "Interview Prep"],
 		},
@@ -41,7 +41,7 @@ export const mockMenteeDashboard = {
 			title: "Resume Specialist",
 			expertise: ["Resume Review"],
 			rating: 4.6,
-			avatar: "/avatars/jane.png",
+			avatar: "https://randomuser.me/api/portraits/women/44.jpg",
 			credits: 4,
 			skills: ["Resume Review", "Interview Prep"],
 		},
@@ -51,7 +51,7 @@ export const mockMenteeDashboard = {
 			title: "Career Coach", // ✅ required
 			expertise: ["Career Advice", "Interview Prep"],
 			rating: 4.8,
-			avatar: "/avatars/john.png",
+			avatar: "https://randomuser.me/api/portraits/women/65.jpg",
 			credits: 5, // ✅ required
 			skills: ["Resume Review", "Interview Prep"],
 		},
@@ -61,7 +61,7 @@ export const mockMenteeDashboard = {
 			title: "Resume Specialist",
 			expertise: ["Resume Review"],
 			rating: 4.6,
-			avatar: "/avatars/jane.png",
+			avatar: "https://randomuser.me/api/portraits/men/75.jpg",
 			credits: 4,
 			skills: ["Resume Review", "Interview Prep"],
 		},
