@@ -10,16 +10,37 @@ import {
 	CardContent,
 	Avatar,
 	Divider,
+	FormControl,
+	InputLabel,
+	Select,
+	MenuItem,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { mockMenteeDashboard } from "../../mocks/mockMenteeDashboardData";
+import { useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
+import { mockMentors } from "../../mocks/mockMentors";
 
 export default function MentorsPage() {
 	const navigate = useNavigate();
+	const [searchTerm, setSearchTerm] = useState("");
+	const [creditFilter, setCreditFilter] = useState("");
 
-	// Using existing suggestedMentors mock for now
-	const { suggestedMentors } = mockMenteeDashboard;
+	const filteredMentors = mockMentors.filter((mentor) => {
+		const lowerSearch = searchTerm.toLowerCase();
+		const matchesSearch =
+			mentor.name.toLowerCase().includes(lowerSearch) ||
+			mentor.title.toLowerCase().includes(lowerSearch) ||
+			mentor.skills.some((skill) => skill.toLowerCase().includes(lowerSearch));
+
+		const matchesCredit =
+			creditFilter === "" || mentor.credits === Number(creditFilter);
+
+		return matchesSearch && matchesCredit;
+	});
+
+	const uniqueCredits = Array.from(
+		new Set(mockMentors.map((mentor) => mentor.credits)),
+	).sort((a, b) => a - b);
 
 	return (
 		<DashboardLayout>
@@ -42,12 +63,40 @@ export default function MentorsPage() {
 						justifyContent="center"
 					>
 						<TextField
-							placeholder="Search mentors by name or expertise"
+							placeholder="Search mentors by name, title, or skill"
 							variant="outlined"
 							size="small"
+							value={searchTerm}
+							onChange={(e) => setSearchTerm(e.target.value)}
 							sx={{ width: { xs: "100%", sm: "300px" } }}
 						/>
-						<Button variant="contained">Search</Button>
+
+						<FormControl size="small" sx={{ minWidth: 120 }}>
+							<InputLabel>Credits</InputLabel>
+							<Select
+								value={creditFilter}
+								label="Credits"
+								onChange={(e) => setCreditFilter(e.target.value)}
+							>
+								<MenuItem value="">All</MenuItem>
+								{uniqueCredits.map((credit) => (
+									<MenuItem key={credit} value={credit}>
+										{credit} credits
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
+						{(searchTerm || creditFilter) && (
+							<Button
+								variant="outlined"
+								onClick={() => {
+									setSearchTerm("");
+									setCreditFilter("");
+								}}
+							>
+								Clear Filters
+							</Button>
+						)}
 					</Stack>
 				</Box>
 
@@ -55,15 +104,12 @@ export default function MentorsPage() {
 
 				{/* Mentors Grid */}
 				<Grid container spacing={3}>
-					{suggestedMentors.map((mentor) => (
+					{filteredMentors.map((mentor) => (
 						<Grid size={{ xs: 12, sm: 6, md: 4 }} key={mentor.id}>
 							<Card elevation={2} sx={{ borderRadius: 2 }}>
 								<CardContent sx={{ textAlign: "center" }}>
 									<Avatar
-										src={
-											mentor.avatar ||
-											"https://randomuser.me/api/portraits/men/1.jpg"
-										}
+										src={mentor.avatar}
 										alt={mentor.name}
 										sx={{ width: 64, height: 64, mx: "auto", mb: 1 }}
 									/>
@@ -82,9 +128,9 @@ export default function MentorsPage() {
 										flexWrap="wrap"
 										mb={1}
 									>
-										{mentor.expertise.map((skill) => (
+										{mentor.skills.map((skill) => (
 											<Typography
-												key={mentor.id}
+												key={skill}
 												variant="caption"
 												sx={{
 													backgroundColor: "#f5f5f5",
@@ -116,6 +162,17 @@ export default function MentorsPage() {
 						</Grid>
 					))}
 				</Grid>
+
+				{filteredMentors.length === 0 && (
+					<Typography
+						variant="body1"
+						color="text.secondary"
+						mt={4}
+						textAlign="center"
+					>
+						No mentors found matching your search.
+					</Typography>
+				)}
 			</Container>
 		</DashboardLayout>
 	);
