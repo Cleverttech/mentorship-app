@@ -174,23 +174,6 @@ export default function MenteeDashboard() {
 						))}
 					</Grid>
 				</Box>
-
-				<Divider sx={{ my: 5 }} />
-
-				{/* Footer Links */}
-				<Box textAlign="center" py={3}>
-					<Stack
-						direction="row"
-						spacing={3}
-						justifyContent="center"
-						flexWrap="wrap"
-					>
-						<Button variant="text">Terms of Service</Button>
-						<Button variant="text">Privacy Policy</Button>
-						<Button variant="text">Contact Us</Button>
-						<Button variant="text">Feedback</Button>
-					</Stack>
-				</Box>
 			</Container>
 		</DashboardLayout>
 	);

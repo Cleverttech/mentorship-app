@@ -7,12 +7,14 @@ import LandingPage from "./pages/landing-page/LandingPage";
 import MentorDashboard from "./pages/mentor-dashbaord/MentorDashboard";
 import MenteeDashboard from "./pages/mentee-dashboard/MenteeDashboard";
 import BookingPage from "./pages/bookings/BookingPage";
-import ArticlePage from "./pages/articles/ArticlePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import BuyCreditsPage from "./pages/buy-credits/BuyCreditsPage";
 import MentorsPage from "./pages/mentors/MentorsPage";
 import MessagesPage from "./pages/messages/MessagesConversationPage";
 import ArticlesPage from "./pages/articles/ArticlePage";
+import ContactUsPage from "./pages/legal/ContactUsPage";
+import PrivacyPolicyPage from "./pages/legal/PrivacyPolicyPage";
+import TermsOfServicePage from "./pages/legal/TermsOfServicePage";
 
 function App() {
 	return (
@@ -85,6 +87,9 @@ function App() {
 					}
 				/>
 				<Route path="/profile" element={<ProfilePage />} />
+				<Route path="/terms-of-service" element={<TermsOfServicePage />} />
+				<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+				<Route path="/contact-us" element={<ContactUsPage />} />
 			</Routes>
 		</Router>
 	);
