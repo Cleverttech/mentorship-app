@@ -12,7 +12,6 @@ export const preloadTestUsers = () => {
   ]);
 };
 
-
 const STORAGE_KEY = 'mock_users';
 
 const getUsers = (): User[] => {
@@ -27,7 +26,7 @@ const saveUsers = (users: User[]) => {
 export const mockAuthService = {
   register(user: User) {
     const users = getUsers();
-    if (users.find(u => u.email === user.email)) {
+    if (users.find((u) => u.email === user.email)) {
       throw new Error('User already exists');
     }
     saveUsers([...users, user]);
@@ -35,12 +34,14 @@ export const mockAuthService = {
 
   login(email: string, password: string): User {
     const users = getUsers();
-    const user = users.find(u => u.email === email && u.password === password);
+    const user = users.find(
+      (u) => u.email === email && u.password === password
+    );
     if (!user) throw new Error('Invalid credentials');
     return user;
   },
 
   clear() {
     localStorage.removeItem(STORAGE_KEY);
-  }
+  },
 };

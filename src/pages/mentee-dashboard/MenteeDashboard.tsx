@@ -1,135 +1,180 @@
 import {
-  Box,
-  Typography,
-  Container,
-  Divider,
-  TextField,
-  Button,
+	Box,
+	Button,
+	Container,
+	Grid,
+	Stack,
+	TextField,
+	Typography,
+	Divider,
+	Card,
+	CardContent,
+	Avatar,
 } from "@mui/material";
-import UpcomingSessionCard from "../../components/UpcomingSessionCard";
-import ArticleCard from "../../components/ArticleCard";
-import MentorCard from "../../components/MentorCard";
+import { useNavigate } from "react-router-dom";
 import { mockMenteeDashboard } from "../../mocks/mockMenteeDashboardData";
+import DashboardLayout from "../../components/DashboardLayout";
+import { useState } from "react";
+import { mockMentors } from "../../mocks/mockMentors";
 
 export default function MenteeDashboard() {
-  const {
-    menteeName,
-    creditsAvailable,
-    upcomingSessions,
-    suggestedMentors,
-    recentArticles,
-  } = mockMenteeDashboard;
+	const navigate = useNavigate();
+	const {
+		menteeName,
+		creditsAvailable,
+		creditsUsedThisMonth,
+		suggestedMentors,
+		recentArticles,
+	} = mockMenteeDashboard;
 
-  return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      {/* Welcome Header */}
-      <Typography variant="h4" align="center" fontWeight={700} gutterBottom>
-        Welcome to Your Dashboard, {menteeName}! 👋
-      </Typography>
+	const [searchTerm, setSearchTerm] = useState("");
 
-      {/* Credit Summary */}
-      <Box
-        display="flex"
-        justifyContent="space-around"
-        alignItems="center"
-        flexWrap="wrap"
-        sx={{ my: 4 }}
-      >
-        <Box textAlign="center">
-          <Typography variant="h6">💳 Credits Available</Typography>
-          <Typography variant="h4" color="primary">
-            {creditsAvailable}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Each session costs 3–7 credits
-          </Typography>
-        </Box>
+	const filteredMentors = mockMentors.filter((mentor) => {
+		const lowerSearch = searchTerm.toLowerCase();
+		return (
+			mentor.name.toLowerCase().includes(lowerSearch) ||
+			mentor.title.toLowerCase().includes(lowerSearch) ||
+			mentor.skills.some((skill) => skill.toLowerCase().includes(lowerSearch))
+		);
+	});
 
-        <Box textAlign="center">
-          <Typography variant="h6">📅 This Month's Usage</Typography>
-          <Typography variant="h4" color="secondary">
-            10
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            +5 from referrals
-          </Typography>
-        </Box>
-      </Box>
+	return (
+		<DashboardLayout>
+			<Container maxWidth="lg" sx={{ py: 4 }}>
+				{/* Header */}
+				<Box textAlign="center" mb={4}>
+					<Typography variant="h4" fontWeight={700} gutterBottom>
+						Welcome to Your Dashboard
+					</Typography>
+					<Typography variant="subtitle1" color="text.secondary">
+						Connect with mentors and enhance your skills.
+					</Typography>
+				</Box>
 
-      {/* Mentor Search */}
-      <Box textAlign="center" sx={{ mb: 4 }}>
-        <Typography variant="h6" gutterBottom>🔍 Search by Skill</Typography>
-        <Typography variant="body2" color="text.secondary" mb={2}>
-          e.g., Career Advice, Resume Review
-        </Typography>
-        <Box display="flex" justifyContent="center" gap={2} flexWrap="wrap">
-          <TextField placeholder="Search mentors..." size="small" />
-          <Button variant="contained">Search</Button>
-        </Box>
-      </Box>
+				{/* Credit Balance */}
+				<Box textAlign="center" mb={5}>
+					<Typography variant="h6" gutterBottom>
+						Credit Balance
+					</Typography>
+					<Typography variant="h3" color="primary">
+						{creditsAvailable}
+					</Typography>
+					<Typography variant="body2" color="text.secondary" mb={2}>
+						Credits Used This Month: {creditsUsedThisMonth}
+					</Typography>
+					<Button variant="contained" onClick={() => navigate("/buy-credits")}>
+						Buy More
+					</Button>
+				</Box>
 
-      <Divider sx={{ my: 5 }} />
+				<Divider sx={{ my: 5 }} />
 
-      {/* Available Mentors */}
-      <Box>
-        <Typography variant="h6" align="center" gutterBottom>
-          👨‍🏫 Available Mentors
-        </Typography>
-        <Typography variant="body2" align="center" color="text.secondary" mb={3}>
-          Browse our mentors and book a session.
-        </Typography>
-        <Box
-          display="grid"
-          gridTemplateColumns="repeat(auto-fit, minmax(280px, 1fr))"
-          gap={2}
-        >
-          {suggestedMentors.map((mentor) => (
-            <MentorCard key={mentor.id} mentor={mentor} />
-          ))}
-        </Box>
-      </Box>
+				{/* Available Mentors */}
+				<Box mb={5}>
+					<Typography variant="h5" fontWeight={700} align="center" gutterBottom>
+						Meet Our Mentors
+					</Typography>
+					<Stack
+						direction={{ xs: "column", sm: "row" }}
+						spacing={2}
+						mb={3}
+						justifyContent="center"
+						alignItems="center"
+					>
+						<TextField
+							placeholder="Search mentors by name, title, or skill"
+							variant="outlined"
+							size="small"
+							value={searchTerm}
+							onChange={(e) => setSearchTerm(e.target.value)}
+							sx={{ width: { xs: "100%", sm: "300px" } }}
+						/>
+						<Button variant="outlined" onClick={() => navigate("/mentors")}>
+							View All Mentors
+						</Button>
+					</Stack>
+					<Box textAlign="center">
+						<Grid container spacing={2} justifyContent="center">
+							{filteredMentors.slice(0, 3).map((mentor) => (
+								<Grid size={{ xs: 12, sm: 6, md: 4 }} key={mentor.id}>
+									<Card elevation={2} sx={{ borderRadius: 2 }}>
+										<CardContent sx={{ textAlign: "center" }}>
+											<Avatar
+												src={mentor.avatar}
+												alt={mentor.name}
+												sx={{ width: 64, height: 64, mx: "auto", mb: 1 }}
+											/>
+											<Typography fontWeight={600}>{mentor.name}</Typography>
+											<Typography
+												variant="body2"
+												color="text.secondary"
+												gutterBottom
+											>
+												{mentor.title}
+											</Typography>
+											<Typography
+												variant="caption"
+												color="text.secondary"
+												display="block"
+												mb={1}
+											>
+												{mentor.credits} credits / session
+											</Typography>
+											<Button
+												variant="contained"
+												size="small"
+												onClick={() => navigate(`/bookings/${mentor.id}`)}
+											>
+												Book Now
+											</Button>
+										</CardContent>
+									</Card>
+								</Grid>
+							))}
+						</Grid>
+					</Box>
+				</Box>
 
-      <Divider sx={{ my: 5 }} />
+				<Divider sx={{ my: 5 }} />
 
-      {/* Bookings */}
-      <Box>
-        <Typography variant="h6" align="center" gutterBottom>
-          📅 My Bookings
-        </Typography>
-        <Typography variant="body2" align="center" color="text.secondary" mb={3}>
-          See your upcoming mentorship sessions
-        </Typography>
-        <Box
-          display="grid"
-          gridTemplateColumns="repeat(auto-fit, minmax(280px, 1fr))"
-          gap={2}
-        >
-          {upcomingSessions.map((session) => (
-            <UpcomingSessionCard key={session.id} session={session} />
-          ))}
-        </Box>
-      </Box>
+				{/* Mentor Insights */}
+				<Box textAlign="center" mb={5}>
+					<Typography variant="h6" gutterBottom>
+						Mentor Insights
+					</Typography>
+					<Typography variant="body2" color="text.secondary" mb={3}>
+						Read articles from experienced mentors.
+					</Typography>
 
-      <Divider sx={{ my: 5 }} />
-
-      {/* Mentor Insights */}
-      <Box>
-        <Typography variant="h6" align="center" gutterBottom>
-          📖 Mentor Insights
-        </Typography>
-        <Typography variant="body2" align="center" color="text.secondary" mb={3}>
-          Read articles from experienced mentors.
-        </Typography>
-        <Box
-          display="grid"
-          gridTemplateColumns="repeat(auto-fit, minmax(280px, 1fr))"
-          gap={2}
-        >
-          {recentArticles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
-        </Box>
-      </Box>
-    </Container>
-  );
+					<Grid container spacing={2} justifyContent="center">
+						{recentArticles.map((article) => (
+							<Grid size={{ xs: 12, md: 4, sm: 6 }} key={article.id}>
+								<Card
+									onClick={() => navigate(`/articles/${article.id}`)}
+									sx={{ cursor: "pointer" }}
+								>
+									<CardContent>
+										<Typography fontWeight={600} gutterBottom>
+											{article.title}
+										</Typography>
+										<Typography variant="body2" color="text.secondary">
+											By {article.author}
+										</Typography>
+										<Typography variant="caption" color="text.secondary">
+											📅 {article.date}
+										</Typography>
+										<Stack mt={2}>
+											<Button variant="text" size="small">
+												Read Article
+											</Button>
+										</Stack>
+									</CardContent>
+								</Card>
+							</Grid>
+						))}
+					</Grid>
+				</Box>
+			</Container>
+		</DashboardLayout>
+	);
 }

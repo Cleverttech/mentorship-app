@@ -1,15 +1,15 @@
-import React from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import type React from 'react';
+import { Box, Button, TextField, Typography } from '@mui/material';
 
 export default function ForgotPasswordPage() {
   const handleForgotPassword = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Forgot password attempt");
+    console.log('Forgot password attempt');
     // TODO: Add forgot password logic
   };
 
   return (
-    <Box sx={{ maxWidth: 400, mx: "auto", mt: 4 }}>
+    <Box sx={{ maxWidth: 400, mx: 'auto', mt: 4 }}>
       <Typography variant="h4" align="center" gutterBottom>
         Forgot Password
       </Typography>

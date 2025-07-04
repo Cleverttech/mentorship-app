@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Stepper,
   Step,
@@ -7,17 +7,17 @@ import {
   Button,
   Snackbar,
   Alert,
-} from "@mui/material";
-import { FormProvider } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+} from '@mui/material';
+import { FormProvider } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
-import useRegisterForm from "./useRegisterForm";
-import StepAccountInfo from "./steps/StepAccountInfo";
-import StepBuyCredits from "./steps/StepBuyCredits";
-import StepProfileSetup from "./steps/StepProfileSetup";
-import StepRoleSelection from "./steps/StepRoleSelection";
+import useRegisterForm from './useRegisterForm';
+import StepAccountInfo from './steps/StepAccountInfo';
+import StepBuyCredits from './steps/StepBuyCredits';
+import StepProfileSetup from './steps/StepProfileSetup';
+import StepRoleSelection from './steps/StepRoleSelection';
 
-const steps = ["Account Info", "Select Role", "Profile Setup", "Buy Credits"];
+const steps = ['Account Info', 'Select Role', 'Profile Setup', 'Buy Credits'];
 
 const RegisterStepper = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -26,13 +26,27 @@ const RegisterStepper = () => {
   const methods = useRegisterForm();
   const navigate = useNavigate();
 
-  const stepFieldMap: Record<number, ("fullName" | "email" | "password" | "role" | "bio" | "skills" | "profileImage" | "credits" | `skills.${number}` | `profileImage.${string}`)[]> = {
-    0: ["fullName", "email", "password"],
-    1: ["role"],
+  const stepFieldMap: Record<
+    number,
+    (
+      | 'fullName'
+      | 'email'
+      | 'password'
+      | 'role'
+      | 'bio'
+      | 'skills'
+      | 'profileImage'
+      | 'credits'
+      | `skills.${number}`
+      | `profileImage.${string}`
+    )[]
+  > = {
+    0: ['fullName', 'email', 'password'],
+    1: ['role'],
     2: [], // optional step
-    3: ["credits"],
+    3: ['credits'],
   };
-  
+
   const onNext = async () => {
     const fields = stepFieldMap[activeStep];
     const isValid = await methods.trigger(fields);
@@ -40,22 +54,22 @@ const RegisterStepper = () => {
       setActiveStep((prev) => prev + 1);
     }
   };
-  
+
   const onBack = () => {
     setActiveStep((prev) => prev - 1);
   };
 
   const onSubmit = methods.handleSubmit((data) => {
-    console.log("Submitted data:", data);
+    console.log('Submitted data:', data);
 
-    localStorage.setItem("profileData", JSON.stringify(data));
+    localStorage.setItem('profileData', JSON.stringify(data));
 
     // Show success message
     setShowSnackbar(true);
 
     // Redirect after delay
     setTimeout(() => {
-      navigate("/profile");
+      navigate('/profile');
     }, 1500);
   });
 
@@ -76,7 +90,7 @@ const RegisterStepper = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box sx={{ maxWidth: 600, mx: "auto", mt: 4 }}>
+      <Box sx={{ maxWidth: 600, mx: 'auto', mt: 4 }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
             <Step key={label}>
@@ -107,7 +121,7 @@ const RegisterStepper = () => {
           autoHideDuration={2000}
           onClose={() => setShowSnackbar(false)}
         >
-          <Alert severity="success" sx={{ width: "100%" }}>
+          <Alert severity="success" sx={{ width: '100%' }}>
             Registration Successful!
           </Alert>
         </Snackbar>

@@ -1,64 +1,94 @@
-import React, { useEffect, useState } from "react";
-import { Box, Typography, Avatar, Chip, Divider } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Box,
+  TextField,
+  Button,
+  Stack,
+} from "@mui/material";
+import DashboardLayout from "../../components/DashboardLayout";
+import { useForm } from "react-hook-form";
 
-const ProfilePage = () => {
-  const [profile, setProfile] = useState<any>(null);
+interface ProfileFormData {
+  name: string;
+  email: string;
+  bio: string;
+  skills: string;
+  availability: string;
+}
 
-  useEffect(() => {
-    const data = localStorage.getItem("profileData");
-    if (data) {
-      setProfile(JSON.parse(data));
+export default function ProfilePage() {
+  const { register, handleSubmit, formState: { errors } } = useForm<ProfileFormData>({
+    defaultValues: {
+      name: "John Smith",
+      email: "john.smith@example.com",
+      bio: "Experienced career coach with expertise in resume review and interview preparation.",
+      skills: "Career Coaching, Resume Review, Interview Prep",
+      availability: "Weekdays 9 AM - 5 PM",
     }
-  }, []);
+  });
 
-  if (!profile) {
-    return <Typography>Loading profile...</Typography>;
-  }
+  const onSubmit = (data: ProfileFormData) => {
+    console.log("Updated profile:", data);
+    // TODO: connect to backend API to update profile
+  };
 
   return (
-    <Box maxWidth={600} mx="auto" mt={4}>
-      <Typography variant="h4" gutterBottom>
-        Welcome, {profile.fullName}
-      </Typography>
+    <DashboardLayout>
+      <Container maxWidth="sm" sx={{ py: 4 }}>
+        <Box textAlign="center" mb={4}>
+          <Typography variant="h4" fontWeight={700} gutterBottom>
+            Profile
+          </Typography>
+          <Typography variant="subtitle1" color="text.secondary">
+            View and edit your profile information.
+          </Typography>
+        </Box>
 
-      <Avatar
-        src={profile.profileImage?.[0]}
-        sx={{ width: 100, height: 100, mb: 2 }}
-      />
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <Stack spacing={3}>
+            <TextField
+              label="Full Name"
+              fullWidth
+              {...register("name", { required: "Name is required" })}
+              error={!!errors.name}
+              helperText={errors.name?.message}
+            />
 
-      <Typography variant="body1">
-        <strong>Role:</strong> {profile.role}
-      </Typography>
+            <TextField
+              label="Email"
+              fullWidth
+              {...register("email", { required: "Email is required" })}
+              error={!!errors.email}
+              helperText={errors.email?.message}
+            />
 
-      <Typography variant="body1" mt={2}>
-        <strong>Bio:</strong> {profile.bio || "—"}
-      </Typography>
+            <TextField
+              label="Bio"
+              multiline
+              rows={4}
+              fullWidth
+              {...register("bio")}
+            />
 
-      <Divider sx={{ my: 2 }} />
+            <TextField
+              label="Skills (comma-separated)"
+              fullWidth
+              {...register("skills")}
+            />
 
-      <Typography variant="body1">
-        <strong>Skills:</strong>
-      </Typography>
-      <Box display="flex" gap={1} flexWrap="wrap" mt={1}>
-        {profile.skills?.map((skill: string) => (
-          <Chip key={skill} label={skill} />
-        ))}
-      </Box>
+            <TextField
+              label="Availability"
+              fullWidth
+              {...register("availability")}
+            />
 
-      {profile.credits && (
-        <Typography variant="body1" mt={2}>
-          <strong>Credits:</strong> {profile.credits}
-        </Typography>
-      )}
-
-      {profile.role === "mentee" && profile.learningInterest && (
-        <Typography variant="body1" mt={2}>
-          <strong>Learning Interest:</strong> {profile.learningInterest}
-        </Typography>
-      )}
-
-    </Box>
+            <Button variant="contained" type="submit">
+              Save Changes
+            </Button>
+          </Stack>
+        </form>
+      </Container>
+    </DashboardLayout>
   );
-};
-
-export default ProfilePage;
+}
